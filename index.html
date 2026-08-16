@@ -208,7 +208,7 @@ nav.sc{background:rgba(2,5,9,.9);backdrop-filter:blur(22px);
  
 /* Footer */
 footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px;margin:0 auto}
-.fgr{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:3rem;margin-bottom:3rem}
+.fgr{display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
 .flogo{font-family:var(--hd);font-size:1.2rem;font-weight:700;letter-spacing:.15em;margin-bottom:.75rem}
 .flogo s{color:var(--g);text-decoration:none}
 .fbrand p{color:var(--mu);font-size:.875rem;line-height:1.6;max-width:32ch;margin-bottom:1.2rem}
@@ -245,6 +245,26 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
   #cd,#cr{display:none}
   *{cursor:auto!important}
 }
+
+/* Face gesture controls — added without changing the original NEXUS layout */
+.face-divider{height:1px;background:var(--b);margin:.05rem 0 .05rem}
+.face-head{display:flex;align-items:center;justify-content:space-between}
+.face-mini{display:grid;grid-template-columns:1fr auto;gap:.32rem .65rem;align-items:center}
+.face-mini span{font-family:var(--mono);font-size:.55rem;color:var(--mu);letter-spacing:.08em}
+.face-mini b{font-family:var(--mono);font-size:.55rem;color:var(--c);font-weight:400}
+.face-mini span:nth-child(1){color:var(--tx)}
+@media(max-width:600px){
+  .arena{padding:0}
+  .cfeed{min-height:0}
+  .gbox{padding:.75rem .8rem;gap:.55rem}
+  .face-mini{gap:.28rem .45rem}
+  .face-mini span,.face-mini b{font-size:.51rem}
+  .legend{gap:.35rem}
+  .leg{padding:.5rem .65rem}
+  .ftip{font-size:.52rem;white-space:normal;text-align:center;line-height:1.4}
+  .ctrls{gap:.65rem;padding:.9rem}
+}
+
 </style>
 </head>
 <body>
@@ -298,7 +318,7 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
   <div class="slbl"><span class="ll"></span><span>02 / GESTURE DEMO</span><span class="ll"></span></div>
   <div class="dhead">
     <h2 class="sh"><span class="glitch" data-t="INTERACT">INTERACT</span><br/><span class="ac">WITH YOUR HANDS</span></h2>
-    <p class="ssub">Allow webcam access and control the 3D object with natural hand gestures.</p>
+    <p class="ssub">Allow webcam access and control the 3D object with natural hand and face gestures.</p>
   </div>
  
   <div class="arena">
@@ -323,7 +343,7 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
     <!-- Camera Panel -->
     <div class="cpanel">
       <div class="chdr">
-        <span>HAND TRACKING</span>
+        <span>HAND + FACE TRACKING</span>
         <button class="ibtn" id="togCam">
           <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.899L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
@@ -360,8 +380,19 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
         </div>
         <div class="grow">
           <span class="glbl">HAND</span>
-          <!-- ✅ FIX: This now shows the CORRECT hand label after mirror correction -->
+          <!-- Correct hand label after mirror correction -->
           <span class="gval" id="handEl">—</span>
+        </div>
+        <div class="face-divider"></div>
+        <div class="face-head">
+          <span class="glbl">FACE GESTURE</span>
+          <span class="gval" id="faceGestEl">—</span>
+        </div>
+        <div class="face-mini">
+          <span>🙂 SMILE</span><b id="faceSmileState">COLOR</b>
+          <span>😉 BLINK</span><b id="faceBlinkState">SHAPE</b>
+          <span>😮 MOUTH OPEN</span><b id="faceMouthState">ZOOM</b>
+          <span>↔ HEAD TILT</span><b id="faceTiltState">ROTATE</b>
         </div>
       </div>
  
@@ -479,6 +510,10 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
           <div class="gitem"><span class="gemo">🤌</span><div><span class="ggest">Pinch (thumb + index)</span><span class="gact">Zoom in / out</span></div></div>
           <div class="gitem"><span class="gemo">✊</span><div><span class="ggest">Fist (curl all fingers)</span><span class="gact">Change object shape</span></div></div>
           <div class="gitem"><span class="gemo">☝️</span><div><span class="ggest">Point (index only up)</span><span class="gact">Cycle color theme</span></div></div>
+          <div class="gitem"><span class="gemo">🙂</span><div><span class="ggest">Smile</span><span class="gact">Cycle color theme</span></div></div>
+          <div class="gitem"><span class="gemo">😉</span><div><span class="ggest">Blink</span><span class="gact">Change object shape</span></div></div>
+          <div class="gitem"><span class="gemo">😮</span><div><span class="ggest">Mouth open</span><span class="gact">Zoom in</span></div></div>
+          <div class="gitem"><span class="gemo">↔</span><div><span class="ggest">Head tilt</span><span class="gact">Rotate object</span></div></div>
         </div>
       </div>
     </div>
@@ -492,25 +527,9 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
       <div class="flogo"><s>[</s>NEXUS<s>]</s></div>
       <p>Gesture-native. Privacy-first. Browser-native. No plugins needed.</p>
       <p class="mtag">✦ Made by Sarthak Mehta</p>
-      <div class="socs">
-        <a class="soc" href="#"><svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
-        <a class="soc" href="#"><svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
-        <a class="soc" href="#"><svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-      </div>
     </div>
     <div class="fcol"><h5>Product</h5><ul><li><a href="#demo">Live Demo</a></li><li><a href="#features">Features</a></li><li><a href="#tech">Technology</a></li></ul></div>
     <div class="fcol"><h5>Stack</h5><ul><li><a href="#">Three.js</a></li><li><a href="#">MediaPipe</a></li><li><a href="#">WebGL</a></li></ul></div>
-    <div class="fcol">
-      <h5>Run in VS Code</h5>
-      <div class="cbox"><code>1. Install "Live Server"
-   extension in VS Code
- 
-2. Right-click this file
-   → Open with Live Server
- 
-3. Camera works on
-   localhost instantly ✓</code></div>
-    </div>
   </div>
   <div class="fbot">
     <span>© 2025 NEXUS — Made by <b style="color:var(--g)">Sarthak Mehta</b></span>
@@ -524,6 +543,7 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
 <!-- MEDIAPIPE (loaded before main script) -->
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1646424915/hands.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1620248257/drawing_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4.1633559619/face_mesh.js" crossorigin="anonymous"></script>
  
 <script>
 (function(){
@@ -824,6 +844,139 @@ window._cam=false;
 let handsMP=null;
 let prevPx=null, prevPy=null, prevPD=null;
 const dbc={};
+
+/* ═══════════════════════════════════════
+   MEDIAPIPE FACE GESTURE TRACKING
+   Runs on the same camera stream as hand tracking.
+   Face controls:
+   🙂 Smile       → cycle color
+   😉 Blink       → change shape
+   😮 Mouth open  → zoom in
+   ↔ Head tilt    → rotate object
+═══════════════════════════════════════ */
+let faceMP=null;
+let faceBusy=false;
+const faceDbc={};
+const faceGestEl=document.getElementById('faceGestEl');
+
+function faceDist(a,b){
+  return Math.hypot(a.x-b.x,a.y-b.y);
+}
+
+function classifyFace(lm){
+  const fw=Math.max(faceDist(lm[234],lm[454]),0.001);
+
+  const mouthOpen=faceDist(lm[13],lm[14])/fw;
+
+  const leftEye=faceDist(lm[159],lm[145])/
+    Math.max(faceDist(lm[33],lm[133]),0.001);
+  const rightEye=faceDist(lm[386],lm[374])/
+    Math.max(faceDist(lm[362],lm[263]),0.001);
+  const eyeOpen=(leftEye+rightEye)/2;
+
+  const mouthWidth=faceDist(lm[61],lm[291])/fw;
+  const lipCenterY=(lm[13].y+lm[14].y)/2;
+  const cornerY=(lm[61].y+lm[291].y)/2;
+  const smileLift=(lipCenterY-cornerY)/fw;
+
+  const tilt=Math.atan2(
+    lm[454].y-lm[234].y,
+    lm[454].x-lm[234].x
+  )*180/Math.PI;
+
+  /*
+    Order matters:
+    blink and mouth-open are high-signal actions;
+    smile requires both width and upward corner movement;
+    head tilt is used only when the face is otherwise neutral.
+  */
+  if(eyeOpen<0.19) return {g:'BLINK',tilt};
+  if(mouthOpen>0.095) return {g:'MOUTH OPEN',tilt};
+  if(mouthWidth>0.34 && smileLift>0.006) return {g:'SMILE',tilt};
+  if(Math.abs(tilt)>7) return {g:'HEAD TILT',tilt};
+  return {g:'FACE READY',tilt};
+}
+
+function faceCooldown(name,ms=1300){
+  const t=Date.now();
+  if(faceDbc[name] && t-faceDbc[name]<ms) return false;
+  faceDbc[name]=t;
+  return true;
+}
+
+function setFaceState(name){
+  ['faceSmileState','faceBlinkState','faceMouthState','faceTiltState']
+    .forEach(id=>document.getElementById(id).style.color='var(--c)');
+  const map={
+    'SMILE':'faceSmileState',
+    'BLINK':'faceBlinkState',
+    'MOUTH OPEN':'faceMouthState',
+    'HEAD TILT':'faceTiltState'
+  };
+  if(map[name]) document.getElementById(map[name]).style.color='var(--g)';
+}
+
+function cycleShapeFromFace(){
+  shapeIdx=(shapeIdx+1)%shapes.length;
+  swapShape(shapes[shapeIdx]);
+  document.querySelectorAll('.shbtn').forEach(b=>{
+    b.classList.toggle('on',b.dataset.shape===shapes[shapeIdx]);
+  });
+}
+
+function cycleColorFromFace(){
+  const h=[0x00ff88,0x00f5ff,0xbf00ff,0xffd700,0xff3366];
+  applyColor(h[(h.indexOf(curColor)+1+h.length)%h.length]);
+  document.querySelectorAll('.cdot').forEach(b=>{
+    b.classList.toggle('on',parseInt(b.dataset.hex,16)===curColor);
+  });
+}
+
+function onFaceResults(res){
+  if(!res.multiFaceLandmarks || !res.multiFaceLandmarks.length){
+    faceGestEl.textContent='NO FACE';
+    return;
+  }
+
+  const {g,tilt}=classifyFace(res.multiFaceLandmarks[0]);
+  faceGestEl.textContent=g;
+  setFaceState(g);
+
+  if(g==='SMILE'){
+    modeEl.textContent='FACE: COLOR';
+    if(faceCooldown('smile')) cycleColorFromFace();
+  }else if(g==='BLINK'){
+    modeEl.textContent='FACE: SHAPE';
+    if(faceCooldown('blink')) cycleShapeFromFace();
+  }else if(g==='MOUTH OPEN'){
+    modeEl.textContent='FACE: ZOOM';
+    camZ=Math.max(2.7,camZ-.035);
+  }else if(g==='HEAD TILT'){
+    modeEl.textContent='FACE: ROTATE';
+    rotVY += Math.max(-.055,Math.min(.055,tilt*.0025));
+  }
+}
+
+function initFaceTracking(){
+  if(faceMP) return true;
+  if(typeof FaceMesh==='undefined'){
+    setTimeout(initFaceTracking,500);
+    return false;
+  }
+
+  faceMP=new FaceMesh({
+    locateFile:f=>`https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4.1633559619/${f}`
+  });
+  faceMP.setOptions({
+    maxNumFaces:1,
+    refineLandmarks:false,
+    minDetectionConfidence:.6,
+    minTrackingConfidence:.55
+  });
+  faceMP.onResults(onFaceResults);
+  return true;
+}
+
  
 const gestEl  = document.getElementById('gestEl');
 const confEl  = document.getElementById('confEl');
@@ -961,6 +1114,7 @@ async function startCamera(){
     document.getElementById('cover').classList.add('hide');
     window._cam=true;
     modeEl.textContent='CAM: ACTIVE';
+    faceGestEl.textContent='FACE: STARTING…';
  
     /* MediaPipe check */
     if(typeof Hands==='undefined'){
@@ -971,6 +1125,15 @@ async function startCamera(){
       return;
     }
  
+    /* Initialize Face Mesh too — this was missing from the previous build. */
+    if(typeof FaceMesh!=='undefined'){
+      initFaceTracking();
+      faceGestEl.textContent='SEARCHING…';
+    }else{
+      faceGestEl.textContent='FACE MODEL LOADING…';
+      console.warn('FaceMesh is not loaded yet.');
+    }
+
     handsMP=new Hands({
       locateFile:f=>`https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1646424915/${f}`
     });
@@ -985,7 +1148,14 @@ async function startCamera(){
     async function sendFrame(){
       if(!window._cam) return;
       if(video.readyState>=2){
-        try{ await handsMP.send({image:video}); }catch(_){}
+        try{ await handsMP.send({image:video}); }catch(err){ console.warn('Hand tracking:',err); }
+        if(!faceMP && typeof FaceMesh!=='undefined') initFaceTracking();
+        if(faceMP && !faceBusy){
+          faceBusy=true;
+          try{ await faceMP.send({image:video}); }
+          catch(err){ console.warn('Face tracking:',err); }
+          finally{ faceBusy=false; }
+        }
       }
       requestAnimationFrame(sendFrame);
     }
@@ -1010,6 +1180,7 @@ function stopCamera(){
   document.getElementById('cover').classList.remove('hide');
   document.getElementById('hint').textContent='Requires webcam permission';
   gestEl.textContent='—'; confEl.style.width='0%'; handEl.textContent='—';
+  faceGestEl.textContent='—';
   modeEl.textContent='DRAG TO ROTATE';
   window._gi={rx:0,ry:0,zoom:0};
 }
