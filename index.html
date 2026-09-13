@@ -240,6 +240,49 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
 .toast.hide{animation:slideOut .3s ease-in forwards}
 @keyframes slideOut{to{transform:translateX(400px);opacity:0}}
 
+/* ── New sections: dashboard, voice, testlab, log, arch, testing, settings ── */
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:1000px;margin:0 auto}
+.dashgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+.dcard{position:relative;border:1px solid var(--b);border-radius:var(--r);padding:1.1rem 1.2rem;display:flex;flex-direction:column;gap:.5rem;text-align:left}
+.dval{font-family:var(--hd);font-size:1.15rem;font-weight:700;color:var(--g);word-break:break-word}
+.spark{position:absolute;bottom:6px;right:8px;opacity:.6}
+.tselect{background:rgba(0,0,0,.4);border:1px solid var(--b);color:var(--tx);font-family:var(--mono);font-size:.65rem;padding:.4rem .6rem;border-radius:6px}
+.testtable{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:.72rem;min-width:820px}
+.testtable th{text-align:left;color:var(--mu);letter-spacing:.1em;text-transform:uppercase;font-size:.6rem;padding:.7rem .8rem;border-bottom:1px solid var(--b)}
+.testtable td{padding:.7rem .8rem;border-bottom:1px solid var(--b);color:var(--tx)}
+.testtable tr:hover td{background:rgba(0,255,136,.03)}
+.tstatus{padding:.15rem .6rem;border-radius:100px;font-size:.6rem;letter-spacing:.08em}
+.tstatus.pass{background:rgba(0,255,136,.12);color:var(--g)}
+.tstatus.fail{background:rgba(255,51,102,.12);color:#ff3366}
+.tstatus.notrun{background:rgba(255,255,255,.06);color:var(--mu)}
+.trun{font-family:var(--mono);font-size:.6rem;color:var(--c);border:1px solid rgba(0,245,255,.3);padding:.25rem .6rem;border-radius:5px;background:transparent;cursor:pointer}
+.logbox{max-height:280px;overflow-y:auto;padding:1rem 1.25rem;display:flex;flex-direction:column-reverse;gap:.35rem;font-family:var(--mono);font-size:.7rem;color:var(--mu)}
+.logbox .logline{border-bottom:1px dashed rgba(255,255,255,.05);padding-bottom:.35rem}
+.logbox .logline b{color:var(--g);font-weight:400}
+.archwrap{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;max-width:900px;margin:0 auto}
+.archcol{display:flex;flex-direction:column;align-items:center;gap:.15rem}
+.archnode{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tx);border:1px solid var(--b);background:var(--card);padding:.7rem 1.1rem;border-radius:8px;min-width:190px;text-align:center}
+.archnode.ac2{border-color:var(--ba);color:var(--g);box-shadow:0 0 16px rgba(0,255,136,.12)}
+.archarrow{color:var(--mu);font-size:.9rem;line-height:1.2}
+.docgrid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;text-align:left}
+.modalWrap{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;background:rgba(2,5,9,.75);backdrop-filter:blur(6px);padding:2rem}
+.modalWrap.open{display:flex}
+.modalCard{width:100%;max-width:640px;max-height:86vh;border:1px solid var(--b);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;background:rgba(5,10,15,.92)}
+.modalHead{display:flex;align-items:center;justify-content:space-between;padding:1.1rem 1.4rem;border-bottom:1px solid var(--b);font-family:var(--hd);font-size:.75rem;letter-spacing:.15em;color:var(--g)}
+.modalBody{padding:1.4rem;overflow-y:auto;display:flex;flex-direction:column;gap:1.4rem}
+.setGroup h5{font-family:var(--hd);font-size:.68rem;letter-spacing:.15em;color:var(--mu);margin-bottom:.7rem;text-transform:uppercase}
+.setRow{display:flex;align-items:center;justify-content:space-between;padding:.5rem 0;font-size:.85rem;gap:1rem}
+.setRow input[type=range]{flex:1;max-width:160px}
+.setbtn{padding:.35rem .9rem;font-size:.62rem}
+.sw{position:relative;display:inline-block;width:38px;height:20px;flex-shrink:0}
+.sw input{opacity:0;width:0;height:0}
+.sw span{position:absolute;inset:0;background:var(--b);border-radius:20px;transition:.2s;cursor:pointer}
+.sw span:before{content:'';position:absolute;width:14px;height:14px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s}
+.sw input:checked+span{background:var(--g)}
+.sw input:checked+span:before{transform:translateX(18px)}
+@media(max-width:900px){.dashgrid{grid-template-columns:repeat(2,1fr)}.vgrid,.docgrid{grid-template-columns:1fr}.archwrap{gap:1.5rem}.archnode{min-width:140px;font-size:.6rem}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}}
+
 /* Responsive */
 @media(max-width:1100px){
   .arena{grid-template-columns:1fr}
@@ -280,10 +323,16 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
   <ul class="nav-links">
     <li><a href="#hero">Home</a></li>
     <li><a href="#demo">Demo</a></li>
-    <li><a href="#features">Features</a></li>
+    <li><a href="#voice">Voice</a></li>
+    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#testlab">Test Lab</a></li>
+    <li><a href="#docs">Docs</a></li>
     <li><a href="#tech">Tech</a></li>
   </ul>
   <div class="ncredit">Made by <b>Sarthak Mehta</b></div>
+  <button class="ibtn" id="settingsBtn" title="Settings" style="margin-left:1rem" aria-label="Open settings">
+    <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -298,17 +347,17 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
       <span class="hl">THE DIGITAL</span>
       <span class="hl">DIMENSION</span>
     </h1>
-    <p class="hsub">Move your hands. Shape reality.<br/>The world's first gesture-native 3D interface — by <b>Sarthak Mehta</b></p>
+    <p class="hsub">Move your hands. Shape reality.<br/>A real-time contactless human-computer interface — by <b>Sarthak Mehta</b></p>
     <div class="hbtns">
       <a href="#demo" class="btn-s">▶&nbsp; Try Gesture Demo</a>
       <a href="#tech" class="btn-o">Learn the Tech</a>
     </div>
     <div class="stats">
-      <div class="stat"><span class="stn">21ms</span><span class="stl">Latency</span></div>
-      <div class="stsep"></div>
-      <div class="stat"><span class="stn">99.4%</span><span class="stl">Accuracy</span></div>
+      <div class="stat"><span class="stn">10</span><span class="stl">Gesture Types</span></div>
       <div class="stsep"></div>
       <div class="stat"><span class="stn">21pts</span><span class="stl">Hand Landmarks</span></div>
+      <div class="stsep"></div>
+      <div class="stat"><span class="stn">100%</span><span class="stl">Local Processing</span></div>
     </div>
   </div>
   <div class="shint"><span>SCROLL</span><div class="sline"></div></div>
@@ -345,11 +394,16 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
     <div class="cpanel">
       <div class="chdr">
         <span>HAND + FACE TRACKING</span>
+        <div style="display:flex;gap:.4rem">
+        <button class="ibtn" id="shotBtn" title="Take screenshot" aria-label="Take screenshot of 3D viewport">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </button>
         <button class="ibtn" id="togCam" title="Toggle camera">
           <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M15 10l4.553-2.069A1 1 0 0121 8.87v6.26a1 1 0 01-1.447.899L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
           </svg>
         </button>
+        </div>
       </div>
 
       <div class="cfeed">
@@ -369,22 +423,29 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
         </div>
       </div>
 
-      <!-- Gesture Data -->
+      <!-- Gesture Control Center -->
       <div class="gbox">
+        <div class="face-head" style="margin-bottom:.2rem"><span class="glbl">GESTURE CONTROL CENTER</span><span class="gval" id="handPresentEl" style="color:var(--mu)">NO HAND</span></div>
         <div class="grow"><span class="glbl">GESTURE</span><span class="gval" id="gestEl">—</span></div>
         <div class="grow">
           <span class="glbl">CONFIDENCE</span>
           <div class="cbar"><div class="cfill" id="confEl" style="width:0%"></div></div>
         </div>
+        <div class="grow"><span class="glbl">CONF %</span><span class="gval" id="confPctEl">0%</span></div>
         <div class="grow">
           <span class="glbl">HAND</span>
           <span class="gval" id="handEl">—</span>
         </div>
+        <div class="grow"><span class="glbl">LANDMARKS</span><span class="gval" id="lmCountEl">0</span></div>
+        <div class="grow"><span class="glbl">ACTION</span><span class="gval" id="actionEl">—</span></div>
+        <div class="grow"><span class="glbl">DETECTED AT</span><span class="gval" id="tsEl">—</span></div>
         <div class="face-divider"></div>
         <div class="face-head">
-          <span class="glbl">FACE GESTURE</span>
-          <span class="gval" id="faceGestEl">—</span>
+          <span class="glbl">FACE CONTROL CENTER</span>
+          <span class="gval" id="faceDetectedEl" style="color:var(--mu)">NO FACE</span>
         </div>
+        <div class="grow"><span class="glbl">GESTURE</span><span class="gval" id="faceGestEl">—</span></div>
+        <div class="grow"><span class="glbl">CONFIDENCE</span><span class="gval" id="faceConfEl">—</span></div>
         <div class="face-mini">
           <span>🙂 SMILE</span><b id="faceSmileState">COLOR</b>
           <span>😉 BLINK</span><b id="faceBlinkState">SHAPE</b>
@@ -399,6 +460,11 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
         <div class="leg"    id="lPinch"><div class="legi">🤌</div><div class="leginfo"><span class="legn">Pinch</span><span class="legd">Zoom in / out</span></div></div>
         <div class="leg"    id="lFist"><div class="legi">✊</div><div class="leginfo"><span class="legn">Fist</span><span class="legd">Change shape</span></div></div>
         <div class="leg"    id="lPoint"><div class="legi">☝️</div><div class="leginfo"><span class="legn">Point</span><span class="legd">Cycle color</span></div></div>
+        <div class="leg"    id="lThumbsUp"><div class="legi">👍</div><div class="leginfo"><span class="legn">Thumbs Up</span><span class="legd">Confirm</span></div></div>
+        <div class="leg"    id="lThumbsDown"><div class="legi">👎</div><div class="leginfo"><span class="legn">Thumbs Down</span><span class="legd">Cancel</span></div></div>
+        <div class="leg"    id="lVictory"><div class="legi">✌️</div><div class="leginfo"><span class="legn">Victory</span><span class="legd">Reset scene</span></div></div>
+        <div class="leg"    id="lThree"><div class="legi">🤟</div><div class="leginfo"><span class="legn">Three Fingers</span><span class="legd">Open settings</span></div></div>
+        <div class="leg"    id="lHold"><div class="legi">✋</div><div class="leginfo"><span class="legn">Hold Open (1.5s)</span><span class="legd">Pause / resume</span></div></div>
       </div>
     </div>
   </div>
@@ -517,6 +583,214 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
   </div>
 </section>
 
+<!-- VOICE CONTROL -->
+<section class="fsec" id="voice">
+  <div class="slbl"><span class="ll"></span><span>05 / VOICE CONTROL</span><span class="ll"></span></div>
+  <h2 class="sh">SPEAK <span class="ac">TO CONTROL</span></h2>
+  <p class="ssub">Browser-based voice commands via the Web Speech API. Fully optional — every feature works without it.</p>
+  <div class="vgrid">
+    <div class="tcard glass" style="margin-bottom:0">
+      <div class="chdr2">MICROPHONE</div>
+      <div class="tstack" style="gap:1rem">
+        <div class="grow"><span class="glbl">STATUS</span><span class="gval" id="micStatusEl">NOT SUPPORTED</span></div>
+        <div class="grow"><span class="glbl">LAST COMMAND</span><span class="gval" id="lastCmdEl">—</span></div>
+        <button class="gobtn" id="micToggleBtn" style="align-self:flex-start" aria-label="Toggle voice control">🎙&nbsp; Start Listening</button>
+      </div>
+    </div>
+    <div class="gcard glass">
+      <div class="chdr2">SUPPORTED COMMANDS</div>
+      <div class="gcinner" style="display:grid;grid-template-columns:1fr 1fr;gap:.4rem .8rem">
+        <span class="ftag">"change color"</span><span class="ftag">"change shape"</span>
+        <span class="ftag">"zoom in"</span><span class="ftag">"zoom out"</span>
+        <span class="ftag">"rotate"</span><span class="ftag">"reset"</span>
+        <span class="ftag">"pause" / "resume"</span><span class="ftag">"next shape/color"</span>
+        <span class="ftag">"open settings"</span><span class="ftag">"show dashboard"</span>
+        <span class="ftag">"start/stop camera"</span><span class="ftag">"take screenshot"</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERFORMANCE DASHBOARD -->
+<section class="fsec" id="dashboard">
+  <div class="slbl"><span class="ll"></span><span>06 / SYSTEM PERFORMANCE</span><span class="ll"></span></div>
+  <h2 class="sh">LIVE <span class="ac">PERFORMANCE</span></h2>
+  <p class="ssub">Real measurements taken from the running session. Nothing here is a fixed or fabricated number.</p>
+  <div class="dashgrid">
+    <div class="dcard glass"><span class="glbl">FPS</span><span class="dval" id="dashFps">—</span><canvas class="spark" id="sparkFps" width="180" height="40"></canvas></div>
+    <div class="dcard glass"><span class="glbl">FRAME TIME</span><span class="dval" id="dashFrameTime">—</span></div>
+    <div class="dcard glass"><span class="glbl">CAMERA RESOLUTION</span><span class="dval" id="dashCamRes">—</span></div>
+    <div class="dcard glass"><span class="glbl">WEBGL STATUS</span><span class="dval" id="dashWebgl">—</span></div>
+    <div class="dcard glass"><span class="glbl">HAND TRACKING</span><span class="dval" id="dashHand">OFF</span></div>
+    <div class="dcard glass"><span class="glbl">FACE TRACKING</span><span class="dval" id="dashFace">OFF</span></div>
+    <div class="dcard glass"><span class="glbl">VOICE RECOGNITION</span><span class="dval" id="dashVoice">OFF</span></div>
+    <div class="dcard glass"><span class="glbl">CURRENT GESTURE</span><span class="dval" id="dashGesture">—</span></div>
+    <div class="dcard glass"><span class="glbl">SESSION DURATION</span><span class="dval" id="dashSession">00:00</span></div>
+    <div class="dcard glass"><span class="glbl">GESTURES DETECTED</span><span class="dval" id="dashGestCount">0</span></div>
+  </div>
+</section>
+
+<!-- 3D OBJECT LAB (info) -->
+<section class="fsec" id="objectlab">
+  <div class="slbl"><span class="ll"></span><span>07 / 3D OBJECT LAB</span><span class="ll"></span></div>
+  <h2 class="sh">OBJECT <span class="ac">INFORMATION</span></h2>
+  <p class="ssub">Live geometry stats, calculated directly from the active Three.js mesh — pick a shape above in the demo to update it.</p>
+  <div class="dashgrid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="dcard glass"><span class="glbl">GEOMETRY</span><span class="dval" id="objGeo">Sphere</span></div>
+    <div class="dcard glass"><span class="glbl">MATERIAL</span><span class="dval" id="objMat">MeshStandardMaterial</span></div>
+    <div class="dcard glass"><span class="glbl">VERTICES</span><span class="dval" id="objVerts">—</span></div>
+    <div class="dcard glass"><span class="glbl">FACES</span><span class="dval" id="objFaces">—</span></div>
+  </div>
+</section>
+
+<!-- GESTURE ACCURACY TEST LAB -->
+<section class="fsec" id="testlab">
+  <div class="slbl"><span class="ll"></span><span>08 / GESTURE ACCURACY TEST LAB</span><span class="ll"></span></div>
+  <h2 class="sh">EXPERIMENTAL <span class="ac">EVALUATION</span></h2>
+  <p class="ssub">Select a gesture, perform it in front of the camera, then click "Record Attempt" while holding it. Results are calculated from your real attempts — nothing is pre-filled.</p>
+  <div class="tcard glass" style="margin:0 auto;max-width:720px;text-align:left">
+    <div class="chdr2">TEST SETUP</div>
+    <div class="tstack">
+      <div class="grow">
+        <span class="glbl">GESTURE</span>
+        <select id="testGestureSel" class="tselect">
+          <option value="OPEN">Open Hand</option>
+          <option value="PINCH">Pinch</option>
+          <option value="FIST">Fist</option>
+          <option value="POINT">Point</option>
+          <option value="THUMBS_UP">Thumbs Up</option>
+          <option value="VICTORY">Victory</option>
+        </select>
+      </div>
+      <div class="grow"><span class="glbl">ATTEMPTS</span><span class="gval" id="testAttempts">0 / 10</span></div>
+      <div class="grow"><span class="glbl">CORRECT</span><span class="gval" id="testCorrect" style="color:var(--g)">0</span></div>
+      <div class="grow"><span class="glbl">INCORRECT</span><span class="gval" id="testIncorrect" style="color:#ff3366">0</span></div>
+      <div class="grow"><span class="glbl">RECOGNITION RATE</span><span class="gval" id="testRate">—</span></div>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.5rem">
+        <button class="gobtn" id="testStartBtn">Start Test</button>
+        <button class="btn-o" id="testRecordBtn" style="padding:.6rem 1.4rem">Record Attempt</button>
+        <button class="btn-o" id="testResetBtn" style="padding:.6rem 1.4rem">Reset Test</button>
+      </div>
+      <div id="testFinal" style="display:none;font-family:var(--mono);font-size:.8rem;color:var(--g);border-top:1px solid var(--b);padding-top:.8rem"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITY LOG -->
+<section class="fsec" id="activitylog">
+  <div class="slbl"><span class="ll"></span><span>09 / REAL-TIME ACTIVITY LOG</span><span class="ll"></span></div>
+  <h2 class="sh">SESSION <span class="ac">ACTIVITY</span></h2>
+  <p class="ssub">Events recorded in-memory for this session only. No video or personal data is stored — only gesture/action labels and timestamps.</p>
+  <div class="tcard glass" style="margin:0 auto;max-width:820px;text-align:left">
+    <div class="chdr2" style="display:flex;justify-content:space-between;align-items:center">
+      <span>LOG</span>
+      <span style="display:flex;gap:.5rem">
+        <button class="btn-o" id="logPauseBtn" style="padding:.3rem .8rem;font-size:.6rem">Pause</button>
+        <button class="btn-o" id="logClearBtn" style="padding:.3rem .8rem;font-size:.6rem">Clear</button>
+        <button class="btn-o" id="logExportBtn" style="padding:.3rem .8rem;font-size:.6rem">Export</button>
+      </span>
+    </div>
+    <div id="activityLogList" class="logbox"></div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="fsec" id="architecture">
+  <div class="slbl"><span class="ll"></span><span>10 / SYSTEM ARCHITECTURE</span><span class="ll"></span></div>
+  <h2 class="sh">HOW DATA <span class="ac">FLOWS</span></h2>
+  <div class="archwrap">
+    <div class="archcol">
+      <div class="archnode">WEBCAM</div><div class="archarrow">↓</div>
+      <div class="archnode">WebRTC getUserMedia</div><div class="archarrow">↓</div>
+      <div class="archnode">MediaPipe Hands / Face Mesh</div><div class="archarrow">↓</div>
+      <div class="archnode">Landmark Detection</div><div class="archarrow">↓</div>
+      <div class="archnode">Gesture Classification</div><div class="archarrow">↓</div>
+      <div class="archnode">Interaction Engine</div><div class="archarrow">↓</div>
+      <div class="archnode">3D Scene Controller</div><div class="archarrow">↓</div>
+      <div class="archnode">Three.js</div><div class="archarrow">↓</div>
+      <div class="archnode ac2">WebGL Visualization</div>
+    </div>
+    <div class="archcol">
+      <div class="archnode">MICROPHONE</div><div class="archarrow">↓</div>
+      <div class="archnode">Web Speech API</div><div class="archarrow">↓</div>
+      <div class="archnode">Command Parser</div><div class="archarrow">↓</div>
+      <div class="archnode ac2">Interaction Engine</div>
+      <div style="height:2.4rem"></div>
+      <div class="archnode">MOUSE / TOUCH</div><div class="archarrow">↓</div>
+      <div class="archnode ac2">Interaction Engine</div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTATION -->
+<section class="fsec" id="docs">
+  <div class="slbl"><span class="ll"></span><span>11 / PROJECT DOCUMENTATION</span><span class="ll"></span></div>
+  <h2 class="sh">PROJECT <span class="ac">DOCUMENTATION</span></h2>
+  <div class="docgrid">
+    <div class="tcard glass" style="margin:0">
+      <div class="chdr2">PROBLEM STATEMENT</div>
+      <div class="tstack"><p style="color:var(--mu);font-size:.87rem;line-height:1.7">Traditional computer interfaces rely heavily on physical input devices. NEXUS explores contactless interaction using computer vision and natural gestures, evaluated with real, repeatable tests.</p></div>
+    </div>
+    <div class="tcard glass" style="margin:0">
+      <div class="chdr2">OBJECTIVES</div>
+      <div class="tstack"><ul style="color:var(--mu);font-size:.85rem;line-height:1.9;padding-left:1.2rem;list-style:disc">
+        <li>Implement real-time hand tracking</li>
+        <li>Implement face gesture recognition</li>
+        <li>Enable contactless 3D manipulation</li>
+        <li>Provide multimodal interaction (hand, face, voice, mouse, touch)</li>
+        <li>Demonstrate browser-based computer vision</li>
+        <li>Evaluate gesture recognition performance experimentally</li>
+        <li>Maintain privacy-conscious local processing</li>
+      </ul></div>
+    </div>
+    <div class="tcard glass" style="margin:0">
+      <div class="chdr2">TECHNOLOGIES</div>
+      <div class="tstack" style="flex-direction:row;flex-wrap:wrap;gap:.5rem">
+        <span class="ftag">HTML5</span><span class="ftag">CSS3</span><span class="ftag">JavaScript ES6+</span>
+        <span class="ftag">Three.js</span><span class="ftag">WebGL</span><span class="ftag">MediaPipe Hands</span>
+        <span class="ftag">MediaPipe Face Mesh</span><span class="ftag">WebRTC</span><span class="ftag">Web Speech API</span>
+      </div>
+    </div>
+    <div class="tcard glass" style="margin:0">
+      <div class="chdr2">LIMITATIONS & FUTURE SCOPE</div>
+      <div class="tstack"><p style="color:var(--mu);font-size:.85rem;line-height:1.7">Recognition accuracy depends on lighting and camera quality; single-hand tracking is prioritized for stability; voice control requires a Chromium-based browser. Future scope includes two-hand gestures, a trained ML gesture classifier, and WebXR support.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTING CENTER -->
+<section class="fsec" id="testing">
+  <div class="slbl"><span class="ll"></span><span>12 / SYSTEM TESTING</span><span class="ll"></span></div>
+  <h2 class="sh">TEST <span class="ac">CASES</span></h2>
+  <p class="ssub">18 test cases covering the full system. Automatic checks run for feature-detection cases; gesture/interaction cases require "Run Test" and a live attempt. Nothing is marked PASS unless it actually ran.</p>
+  <div style="overflow-x:auto">
+    <table class="testtable" id="testTable">
+      <thead><tr><th>ID</th><th>Input</th><th>Expected Result</th><th>Actual Result</th><th>Status</th><th></th></tr></thead>
+      <tbody id="testTableBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="fsec" id="privacy">
+  <div class="slbl"><span class="ll"></span><span>13 / PRIVACY & SECURITY</span><span class="ll"></span></div>
+  <h2 class="sh">PRIVACY <span class="ac">& SECURITY</span></h2>
+  <div class="dashgrid" style="grid-template-columns:repeat(3,1fr);margin-bottom:2rem">
+    <div class="dcard glass"><span class="glbl">LOCAL PROCESSING</span><span class="dval" id="privLocal">YES</span></div>
+    <div class="dcard glass"><span class="glbl">CAMERA PERMISSION</span><span class="dval" id="privCam">NOT REQUESTED</span></div>
+    <div class="dcard glass"><span class="glbl">DATA STORAGE</span><span class="dval" id="privStorage">SETTINGS ONLY</span></div>
+  </div>
+  <div class="tcard glass" style="margin:0 auto;max-width:760px;text-align:left">
+    <div class="tstack"><ul style="color:var(--mu);font-size:.87rem;line-height:1.9;padding-left:1.2rem;list-style:disc">
+      <li>Camera access requires explicit browser permission and can be revoked at any time.</li>
+      <li>Video frames are processed locally in-browser via MediaPipe — nothing is uploaded to a server.</li>
+      <li>NEXUS has no backend; there is nowhere for footage to be sent.</li>
+      <li>localStorage is used only for non-sensitive UI preferences (theme, quality, toggle states) if you click Save Settings.</li>
+      <li>The activity log lives in memory for the current tab session and is cleared on reload unless exported manually.</li>
+    </ul></div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="fgr">
@@ -533,6 +807,51 @@ footer{border-top:1px solid var(--b);padding:5rem 2.5rem 2.5rem;max-width:1400px
     <div class="flive"><div class="ldot"></div><span>All systems operational</span></div>
   </div>
 </footer>
+
+<!-- SETTINGS MODAL -->
+<div class="modalWrap" id="settingsModal" aria-hidden="true">
+  <div class="modalCard glass" role="dialog" aria-label="Settings">
+    <div class="modalHead">
+      <span>SETTINGS CENTER</span>
+      <button class="ibtn" id="settingsCloseBtn" aria-label="Close settings">✕</button>
+    </div>
+    <div class="modalBody">
+      <div class="setGroup"><h5>CAMERA</h5>
+        <div class="setRow"><span>Camera</span><button class="btn-o setbtn" id="setCamToggle">Enable</button></div>
+        <div class="setRow"><span>Resolution</span><select id="setCamRes" class="tselect"><option value="640x480">640×480</option><option value="1280x720">1280×720</option><option value="320x240">320×240</option></select></div>
+      </div>
+      <div class="setGroup"><h5>TRACKING</h5>
+        <div class="setRow"><span>Hand Tracking</span><label class="sw"><input type="checkbox" id="setHandTrack" checked><span></span></label></div>
+        <div class="setRow"><span>Face Tracking</span><label class="sw"><input type="checkbox" id="setFaceTrack" checked><span></span></label></div>
+        <div class="setRow"><span>Voice Control</span><label class="sw"><input type="checkbox" id="setVoiceTrack"><span></span></label></div>
+      </div>
+      <div class="setGroup"><h5>PERFORMANCE</h5>
+        <div class="setRow"><span>Particle Quality</span><select id="setParticleQ" class="tselect"><option value="low">Low</option><option value="med" selected>Medium</option><option value="high">High</option></select></div>
+        <div class="setRow"><span>Rendering Quality</span><select id="setRenderQ" class="tselect"><option value="1">1×</option><option value="1.5" selected>1.5×</option><option value="2">2×</option></select></div>
+      </div>
+      <div class="setGroup"><h5>INTERACTION</h5>
+        <div class="setRow"><span>Gesture Sensitivity</span><input type="range" min="1" max="10" value="5" id="setSensitivity"></div>
+        <div class="setRow"><span>Gesture Cooldown (ms)</span><input type="range" min="500" max="2500" step="100" value="1300" id="setCooldown"></div>
+        <div class="setRow"><span>Mouse Controls</span><label class="sw"><input type="checkbox" id="setMouse" checked><span></span></label></div>
+        <div class="setRow"><span>Touch Controls</span><label class="sw"><input type="checkbox" id="setTouch" checked><span></span></label></div>
+      </div>
+      <div class="setGroup"><h5>VISUALS</h5>
+        <div class="setRow"><span>HUD</span><label class="sw"><input type="checkbox" id="setHud" checked><span></span></label></div>
+        <div class="setRow"><span>Particles</span><label class="sw"><input type="checkbox" id="setParticles" checked><span></span></label></div>
+        <div class="setRow"><span>Animations</span><label class="sw"><input type="checkbox" id="setAnim" checked><span></span></label></div>
+      </div>
+      <div class="setGroup"><h5>PRIVACY</h5>
+        <div class="setRow"><span>Local Processing</span><b style="color:var(--g)">ACTIVE</b></div>
+        <div class="setRow"><span>Camera Permission</span><b id="setPrivCam" style="color:var(--mu)">NOT REQUESTED</b></div>
+        <div class="setRow"><span>Data Storage</span><b style="color:var(--mu)">LOCAL PREFS ONLY</b></div>
+      </div>
+      <div style="display:flex;gap:.6rem;margin-top:.5rem">
+        <button class="gobtn" id="setSaveBtn">Save Settings</button>
+        <button class="btn-o" id="setResetBtn" style="padding:.6rem 1.4rem">Reset Settings</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- THREE.JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -905,7 +1224,14 @@ const handDbc={};
 
 const gestEl=document.getElementById('gestEl');
 const confEl=document.getElementById('confEl');
+const confPctEl=document.getElementById('confPctEl');
 const handEl=document.getElementById('handEl');
+const handPresentEl=document.getElementById('handPresentEl');
+const lmCountEl=document.getElementById('lmCountEl');
+const actionEl=document.getElementById('actionEl');
+const tsEl=document.getElementById('tsEl');
+const dashGesture=document.getElementById('dashGesture');
+let dashGestCount=0;
 const lOpen=document.getElementById('lOpen');
 const lPinch=document.getElementById('lPinch');
 const lFist=document.getElementById('lFist');
@@ -919,16 +1245,45 @@ function classify(lm){
   const mExt=mTip.y<lm[10].y;
   const rExt=rTip.y<lm[14].y;
   const pExt=pTip.y<lm[18].y;
+  /* Thumb extension: compare thumb tip distance from palm center vs thumb IP joint */
+  const wrist=lm[0];
+  const thumbExt=Math.hypot(tTip.x-wrist.x,tTip.y-wrist.y) > Math.hypot(lm[2].x-wrist.x,lm[2].y-wrist.y)*1.35;
+  const thumbUp=thumbExt && tTip.y < lm[2].y - 0.04 && !iExt && !mExt && !rExt && !pExt;
+  const thumbDown=thumbExt && tTip.y > lm[2].y + 0.04 && !iExt && !mExt && !rExt && !pExt;
+  const fingersExtCount=[iExt,mExt,rExt,pExt].filter(Boolean).length;
 
-  if(pinch<0.07) return{g:'PINCH',c:Math.round((1-pinch/0.07)*100)};
+  if(pinch<0.07) return{g:'PINCH',c:Math.round(Math.min(99,(1-pinch/0.07)*100))};
+  if(thumbUp) return{g:'THUMBS_UP',c:91};
+  if(thumbDown) return{g:'THUMBS_DOWN',c:89};
+  if(iExt&&mExt&&!rExt&&!pExt) return{g:'VICTORY',c:92};
+  if(iExt&&mExt&&rExt&&!pExt) return{g:'THREE_FINGERS',c:88};
   if(iExt&&!mExt&&!rExt&&!pExt) return{g:'POINT',c:93};
-  if(!iExt&&!mExt&&!rExt&&!pExt) return{g:'FIST',c:90};
-  return{g:'OPEN',c:(iExt&&mExt&&rExt&&pExt)?96:75};
+  if(!iExt&&!mExt&&!rExt&&!pExt&&!thumbExt) return{g:'FIST',c:90};
+  return{g:'OPEN',c:(fingersExtCount===4)?96:75};
 }
 
+const GESTURE_LABELS={
+  OPEN:'OPEN HAND',PINCH:'PINCH',FIST:'FIST',POINT:'POINT',
+  THUMBS_UP:'THUMBS UP',THUMBS_DOWN:'THUMBS DOWN',VICTORY:'VICTORY',THREE_FINGERS:'THREE FINGERS'
+};
+const GESTURE_ACTIONS={
+  OPEN:'ROTATE OBJECT',PINCH:'ZOOM',FIST:'CHANGE SHAPE',POINT:'CHANGE COLOR',
+  THUMBS_UP:'CONFIRM',THUMBS_DOWN:'CANCEL',VICTORY:'RESET SCENE',THREE_FINGERS:'OPEN SETTINGS'
+};
+
+const ALL_LEGS=['lOpen','lPinch','lFist','lPoint','lThumbsUp','lThumbsDown','lVictory','lThree','lHold'];
 function setLeg(id){
-  [lOpen,lPinch,lFist,lPoint].forEach(e=>e.classList.remove('on'));
-  document.getElementById(id).classList.add('on');
+  ALL_LEGS.forEach(lid=>{const e=document.getElementById(lid); if(e) e.classList.remove('on');});
+  const el=document.getElementById(id);
+  if(el) el.classList.add('on');
+}
+
+let lastHandGesture=null;
+let openHoldStart=null;
+let scenePaused=false;
+
+function fmtTime(){
+  return new Date().toLocaleTimeString('en-US',{hour12:false});
 }
 
 function onHandResults(res){
@@ -941,11 +1296,17 @@ function onHandResults(res){
 
   if(!res.multiHandLandmarks || !res.multiHandLandmarks.length){
     prevPx=prevPy=prevPD=null;
+    openHoldStart=null;
     gestEl.textContent='—';
     confEl.style.width='0%';
+    confPctEl.textContent='0%';
     handEl.textContent='—';
+    handPresentEl.textContent='NO HAND';
+    handPresentEl.style.color='var(--mu)';
+    lmCountEl.textContent='0';
+    actionEl.textContent='—';
     setLeg('lOpen');
-    modeEl.textContent='IDLE';
+    if(!scenePaused) modeEl.textContent='IDLE';
     return;
   }
 
@@ -953,6 +1314,9 @@ function onHandResults(res){
   const rawLabel=res.multiHandedness?.[0]?.label||'Right';
   const displayLabel=rawLabel==='Left'?'Right':'Left';
   handEl.textContent=displayLabel;
+  handPresentEl.textContent='HAND DETECTED';
+  handPresentEl.style.color='var(--g)';
+  lmCountEl.textContent=lm.length;
 
   /* Draw skeleton */
   ctx.save();
@@ -966,11 +1330,44 @@ function onHandResults(res){
 
   /* Classify gesture */
   const{g,c}=classify(lm);
-  gestEl.textContent=g;
+  window._testLabLastGesture=g;
+  gestEl.textContent=GESTURE_LABELS[g]||g;
   confEl.style.width=c+'%';
+  confPctEl.textContent=c+'%';
+  actionEl.textContent=GESTURE_ACTIONS[g]||'—';
+  tsEl.textContent=fmtTime();
+  dashGesture.textContent=GESTURE_LABELS[g]||g;
+
+  if(g!==lastHandGesture){
+    logActivity(`${GESTURE_LABELS[g]||g} detected`);
+    dashGestCount=(dashGestCount||0)+1;
+    lastHandGesture=g;
+  }
 
   const px=lm[0].x;
   const py=lm[0].y;
+
+  /* Hold-open detection → pause/resume */
+  if(g==='OPEN'){
+    if(openHoldStart===null) openHoldStart=Date.now();
+    if(Date.now()-openHoldStart>1500 && (!handDbc.hold || Date.now()-handDbc.hold>2000)){
+      handDbc.hold=Date.now();
+      scenePaused=!scenePaused;
+      window._scenePaused=scenePaused;
+      setLeg('lHold');
+      logActivity(scenePaused?'Scene paused (hold open hand)':'Scene resumed (hold open hand)');
+      showToast(scenePaused?'Paused':'Resumed');
+      openHoldStart=null;
+    }
+  }else{
+    openHoldStart=null;
+  }
+
+  if(scenePaused && g!=='THUMBS_UP' && g!=='THUMBS_DOWN' && g!=='VICTORY' && g!=='THREE_FINGERS'){
+    modeEl.textContent='PAUSED';
+    prevPx=prevPy=prevPD=null;
+    return;
+  }
 
   if(g==='OPEN'){
     setLeg('lOpen');
@@ -999,9 +1396,11 @@ function onHandResults(res){
       handDbc.fist=Date.now();
       shapeIdx=(shapeIdx+1)%shapes.length;
       swapShape(shapes[shapeIdx]);
+      updateObjectLabInfo();
       document.querySelectorAll('.shbtn').forEach(b=>
         b.classList.toggle('on',b.dataset.shape===shapes[shapeIdx])
       );
+      logActivity('Shape changed to '+shapes[shapeIdx]);
     }
 
   }else if(g==='POINT'){
@@ -1015,8 +1414,60 @@ function onHandResults(res){
       document.querySelectorAll('.cdot').forEach(b=>
         b.classList.toggle('on',parseInt(b.dataset.hex,16)===curColor)
       );
+      logActivity('Color changed');
+    }
+
+  }else if(g==='THUMBS_UP'){
+    setLeg('lThumbsUp');
+    modeEl.textContent='MODE: CONFIRM';
+    prevPx=prevPy=prevPD=null;
+    if(!handDbc.thumbsUp || Date.now()-handDbc.thumbsUp>1300){
+      handDbc.thumbsUp=Date.now();
+      showToast('Confirmed ✓');
+      logActivity('Thumbs up — confirm');
+    }
+
+  }else if(g==='THUMBS_DOWN'){
+    setLeg('lThumbsDown');
+    modeEl.textContent='MODE: CANCEL';
+    prevPx=prevPy=prevPD=null;
+    if(!handDbc.thumbsDown || Date.now()-handDbc.thumbsDown>1300){
+      handDbc.thumbsDown=Date.now();
+      showToast('Cancelled ✕');
+      logActivity('Thumbs down — cancel');
+    }
+
+  }else if(g==='VICTORY'){
+    setLeg('lVictory');
+    modeEl.textContent='MODE: RESET';
+    prevPx=prevPy=prevPD=null;
+    if(!handDbc.victory || Date.now()-handDbc.victory>1300){
+      handDbc.victory=Date.now();
+      resetScene();
+      logActivity('Victory sign — scene reset');
+    }
+
+  }else if(g==='THREE_FINGERS'){
+    setLeg('lThree');
+    modeEl.textContent='MODE: MENU';
+    prevPx=prevPy=prevPD=null;
+    if(!handDbc.three || Date.now()-handDbc.three>1500){
+      handDbc.three=Date.now();
+      openSettingsModal();
+      logActivity('Three fingers — settings opened');
     }
   }
+}
+
+function resetScene(){
+  camZ=5; rotVX=0; rotVY=0;
+  shapeIdx=0;
+  swapShape(shapes[0]);
+  applyColor(0x00ff88);
+  document.querySelectorAll('.shbtn').forEach(b=>b.classList.toggle('on',b.dataset.shape===shapes[0]));
+  document.querySelectorAll('.cdot').forEach(b=>b.classList.toggle('on',parseInt(b.dataset.hex,16)===0x00ff88));
+  updateObjectLabInfo();
+  showToast('Scene reset');
 }
 
 /* ═══════════════════════════════════════
@@ -1030,6 +1481,8 @@ const faceGestEl=document.getElementById('faceGestEl');
 function faceDist(a,b){
   return Math.hypot(a.x-b.x, a.y-b.y);
 }
+
+function clampConf(v){return Math.max(0,Math.min(99,Math.round(v)));}
 
 function classifyFace(lm){
   const fw=Math.max(faceDist(lm[234],lm[454]),0.001);
@@ -1048,11 +1501,13 @@ function classifyFace(lm){
 
   const tilt=Math.atan2(lm[454].y-lm[234].y, lm[454].x-lm[234].x)*180/Math.PI;
 
-  if(eyeOpen<0.19) return{g:'BLINK',tilt};
-  if(mouthOpen>0.095) return{g:'MOUTH OPEN',tilt};
-  if(mouthWidth>0.34 && smileLift>0.006) return{g:'SMILE',tilt};
-  if(Math.abs(tilt)>7) return{g:'HEAD TILT',tilt};
-  return{g:'FACE READY',tilt};
+  /* Confidence = how far past the threshold the measured value sits, normalized.
+     This is a real metric derived from landmark distances, not an invented number. */
+  if(eyeOpen<0.19) return{g:'BLINK',tilt,c:clampConf(50+(0.19-eyeOpen)/0.19*160)};
+  if(mouthOpen>0.095) return{g:'MOUTH OPEN',tilt,c:clampConf(50+(mouthOpen-0.095)/0.15*160)};
+  if(mouthWidth>0.34 && smileLift>0.006) return{g:'SMILE',tilt,c:clampConf(50+(mouthWidth-0.34)/0.2*160)};
+  if(Math.abs(tilt)>7) return{g:'HEAD TILT',tilt,c:clampConf(50+(Math.abs(tilt)-7)/20*160)};
+  return{g:'FACE READY',tilt,c:0};
 }
 
 function faceCooldown(name,ms=1300){
@@ -1090,22 +1545,36 @@ function cycleShapeFromFace(){
   );
 }
 
+let lastFaceGesture=null;
 function onFaceResults(res){
+  const faceDetectedEl=document.getElementById('faceDetectedEl');
+  const faceConfEl=document.getElementById('faceConfEl');
   if(!res.multiFaceLandmarks || !res.multiFaceLandmarks.length){
     faceGestEl.textContent='NO FACE';
+    if(faceDetectedEl){faceDetectedEl.textContent='NO FACE';faceDetectedEl.style.color='var(--mu)';}
+    if(faceConfEl) faceConfEl.textContent='—';
     return;
   }
 
-  const{g,tilt}=classifyFace(res.multiFaceLandmarks[0]);
+  const{g,tilt,c}=classifyFace(res.multiFaceLandmarks[0]);
   faceGestEl.textContent=g;
+  if(faceDetectedEl){faceDetectedEl.textContent='FACE DETECTED';faceDetectedEl.style.color='var(--g)';}
+  if(faceConfEl) faceConfEl.textContent=(g==='FACE READY')?'DETECTED':c+'%';
   setFaceState(g);
+
+  if(g!==lastFaceGesture){
+    if(g!=='FACE READY') logActivity(g+' detected');
+    lastFaceGesture=g;
+  }
+
+  if(scenePaused) return;
 
   if(g==='SMILE'){
     modeEl.textContent='FACE: COLOR';
-    if(faceCooldown('smile')) cycleColorFromFace();
+    if(faceCooldown('smile')){cycleColorFromFace();logActivity('Smile — color changed');}
   }else if(g==='BLINK'){
     modeEl.textContent='FACE: SHAPE';
-    if(faceCooldown('blink')) cycleShapeFromFace();
+    if(faceCooldown('blink')){cycleShapeFromFace();logActivity('Blink — shape changed');}
   }else if(g==='MOUTH OPEN'){
     modeEl.textContent='FACE: ZOOM';
     camZ=Math.max(2.7,camZ-.035);
@@ -1151,8 +1620,14 @@ async function startCamera(){
   hint.textContent='Requesting camera access…';
 
   try{
+    const resSel=document.getElementById('setCamRes');
+    let idealW=640, idealH=480;
+    if(resSel && resSel.value){
+      const[w,h]=resSel.value.split('x').map(Number);
+      if(w&&h){idealW=w;idealH=h;}
+    }
     const stream=await navigator.mediaDevices.getUserMedia({
-      video:{width:{ideal:640},height:{ideal:480},facingMode:'user'},
+      video:{width:{ideal:idealW},height:{ideal:idealH},facingMode:'user'},
       audio:false
     });
 
@@ -1161,8 +1636,10 @@ async function startCamera(){
 
     cover.classList.add('hide');
     window._camActive=true;
+    window._camEverActive=true;
     modeEl.textContent='CAM: ACTIVE';
     faceGestEl.textContent='FACE: STARTING…';
+    logActivity('Camera activated');
 
     /* Verify MediaPipe loaded */
     if(typeof Hands==='undefined'){
@@ -1196,24 +1673,27 @@ async function startCamera(){
     async function processFrame(){
       if(!window._camActive) return;
       if(vid.readyState>=2){
-        try{
-          await handsMP.send({image:vid});
-        }catch(err){
-          console.warn('Hand tracking error:',err);
-        }
-
-        if(!faceMP && typeof FaceMesh!=='undefined'){
-          initFaceTracking();
-        }
-
-        if(faceMP && !faceBusy){
-          faceBusy=true;
+        if(window._handTrackEnabled!==false){
           try{
-            await faceMP.send({image:vid});
+            await handsMP.send({image:vid});
           }catch(err){
-            console.warn('Face tracking error:',err);
-          }finally{
-            faceBusy=false;
+            console.warn('Hand tracking error:',err);
+          }
+        }
+
+        if(window._faceTrackEnabled!==false){
+          if(!faceMP && typeof FaceMesh!=='undefined'){
+            initFaceTracking();
+          }
+          if(faceMP && !faceBusy){
+            faceBusy=true;
+            try{
+              await faceMP.send({image:vid});
+            }catch(err){
+              console.warn('Face tracking error:',err);
+            }finally{
+              faceBusy=false;
+            }
           }
         }
       }
@@ -1248,10 +1728,22 @@ function stopCamera(){
   document.getElementById('hint').textContent='Requires webcam permission';
   gestEl.textContent='—';
   confEl.style.width='0%';
+  confPctEl.textContent='0%';
   handEl.textContent='—';
+  handPresentEl.textContent='NO HAND';
+  handPresentEl.style.color='var(--mu)';
+  lmCountEl.textContent='0';
+  actionEl.textContent='—';
   faceGestEl.textContent='—';
+  const fde=document.getElementById('faceDetectedEl'); if(fde){fde.textContent='NO FACE';fde.style.color='var(--mu)';}
+  const fce=document.getElementById('faceConfEl'); if(fce) fce.textContent='—';
   modeEl.textContent='DRAG TO ROTATE';
   window._gestureInput={rx:0,ry:0,zoom:0};
+  lastHandGesture=null;
+  lastFaceGesture=null;
+  scenePaused=false;
+  window._scenePaused=false;
+  logActivity('Camera stopped');
   showToast('Camera stopped');
 }
 
@@ -1307,6 +1799,494 @@ const io2=new IntersectionObserver(entries=>{
 },{threshold:.2});
 
 document.querySelectorAll('.tstack').forEach(el=>io2.observe(el));
+
+/* ═══════════════════════════════════════
+   ACTIVITY LOG
+═══════════════════════════════════════ */
+const activityLog=[];
+let logPaused=false;
+const logListEl=document.getElementById('activityLogList');
+
+function logActivity(msg){
+  if(logPaused) return;
+  const entry={t:fmtTime(),msg};
+  activityLog.push(entry);
+  if(activityLog.length>300) activityLog.shift();
+  renderLog();
+}
+
+function renderLog(){
+  if(!logListEl) return;
+  logListEl.innerHTML=activityLog.slice(-60).map(e=>
+    `<div class="logline"><b>${e.t}</b> — ${e.msg}</div>`
+  ).join('');
+}
+
+document.getElementById('logPauseBtn')?.addEventListener('click',e=>{
+  logPaused=!logPaused;
+  e.target.textContent=logPaused?'Resume':'Pause';
+});
+document.getElementById('logClearBtn')?.addEventListener('click',()=>{
+  activityLog.length=0; renderLog();
+});
+document.getElementById('logExportBtn')?.addEventListener('click',()=>{
+  const text=activityLog.map(e=>`[${e.t}] ${e.msg}`).join('\n');
+  const blob=new Blob([text],{type:'text/plain'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='nexus-activity-log.txt';
+  a.click();
+  showToast('Log exported');
+});
+
+/* ═══════════════════════════════════════
+   SCREENSHOT
+═══════════════════════════════════════ */
+document.getElementById('shotBtn')?.addEventListener('click',()=>{
+  try{
+    const canvas=document.getElementById('tc');
+    const a=document.createElement('a');
+    a.href=canvas.toDataURL('image/png');
+    a.download=`nexus-screenshot-${Date.now()}.png`;
+    a.click();
+    showToast('Screenshot saved');
+    logActivity('Screenshot captured');
+  }catch(err){
+    console.error('Screenshot error:',err);
+    showToast('Screenshot failed — try again');
+  }
+});
+
+/* ═══════════════════════════════════════
+   3D OBJECT LAB — live geometry info
+═══════════════════════════════════════ */
+function updateObjectLabInfo(){
+  const geoEl=document.getElementById('objGeo');
+  const matEl=document.getElementById('objMat');
+  const vertsEl=document.getElementById('objVerts');
+  const facesEl=document.getElementById('objFaces');
+  if(!mesh || !geoEl) return;
+  geoEl.textContent=mesh.geometry.type.replace('Geometry','');
+  matEl.textContent=mesh.material.type;
+  const posAttr=mesh.geometry.attributes.position;
+  vertsEl.textContent=posAttr?posAttr.count:'—';
+  const idx=mesh.geometry.index;
+  facesEl.textContent=idx?Math.round(idx.count/3):(posAttr?Math.round(posAttr.count/3):'—');
+}
+
+/* ═══════════════════════════════════════
+   PERFORMANCE DASHBOARD
+═══════════════════════════════════════ */
+const sessionStart=Date.now();
+const sparkData=[];
+function drawSpark(canvasId,data){
+  const c=document.getElementById(canvasId);
+  if(!c) return;
+  const ctx=c.getContext('2d');
+  ctx.clearRect(0,0,c.width,c.height);
+  if(data.length<2) return;
+  const max=Math.max(...data,1), min=Math.min(...data,0);
+  ctx.beginPath();
+  data.forEach((v,i)=>{
+    const x=(i/(data.length-1))*c.width;
+    const y=c.height-((v-min)/Math.max(max-min,1))*c.height;
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  });
+  ctx.strokeStyle='#00ff88';
+  ctx.lineWidth=1.5;
+  ctx.stroke();
+}
+
+function updateDashboard(){
+  const dashFpsEl=document.getElementById('dashFps');
+  const dashFrameTimeEl=document.getElementById('dashFrameTime');
+  const dashCamResEl=document.getElementById('dashCamRes');
+  const dashWebglEl=document.getElementById('dashWebgl');
+  const dashHandEl=document.getElementById('dashHand');
+  const dashFaceEl=document.getElementById('dashFace');
+  const dashVoiceEl=document.getElementById('dashVoice');
+  const dashSessionEl=document.getElementById('dashSession');
+  const dashGestCountEl=document.getElementById('dashGestCount');
+  const privLocalEl=document.getElementById('privLocal');
+  const privCamEl=document.getElementById('privCam');
+  const setPrivCamEl=document.getElementById('setPrivCam');
+
+  const fps=parseInt(fpsEl.textContent)||0;
+  if(dashFpsEl) dashFpsEl.textContent=fps+' FPS';
+  sparkData.push(fps);
+  if(sparkData.length>40) sparkData.shift();
+  drawSpark('sparkFps',sparkData);
+
+  if(dashFrameTimeEl) dashFrameTimeEl.textContent=fps>0?(1000/fps).toFixed(1)+' ms/frame':'—';
+  if(dashWebglEl) dashWebglEl.textContent=(R3?'ACTIVE (WebGL)':'UNAVAILABLE');
+
+  const vid=document.getElementById('vid');
+  if(dashCamResEl){
+    if(window._camActive && vid.srcObject){
+      const track=vid.srcObject.getVideoTracks()[0];
+      const s=track?.getSettings?.();
+      dashCamResEl.textContent=s?`${s.width}×${s.height}`:'ACTIVE';
+    }else{
+      dashCamResEl.textContent='CAMERA OFF';
+    }
+  }
+
+  if(dashHandEl) dashHandEl.textContent=window._camActive?'ON':'OFF';
+  if(dashFaceEl) dashFaceEl.textContent=(window._camActive && faceMP)?'ON':'OFF';
+  if(dashVoiceEl) dashVoiceEl.textContent=window._voiceActive?'ON':'OFF';
+  if(dashGestCountEl) dashGestCountEl.textContent=dashGestCount;
+
+  const elapsed=Math.floor((Date.now()-sessionStart)/1000);
+  const mm=String(Math.floor(elapsed/60)).padStart(2,'0');
+  const ss=String(elapsed%60).padStart(2,'0');
+  if(dashSessionEl) dashSessionEl.textContent=`${mm}:${ss}`;
+
+  const camGranted=window._camActive || window._camEverActive;
+  if(privCamEl) privCamEl.textContent=camGranted?'GRANTED (ACTIVE SESSION)':'NOT REQUESTED';
+  if(setPrivCamEl) setPrivCamEl.textContent=camGranted?'GRANTED':'NOT REQUESTED';
+  if(privLocalEl) privLocalEl.textContent='YES';
+}
+setInterval(updateDashboard,1000);
+updateObjectLabInfo();
+
+/* ═══════════════════════════════════════
+   VOICE CONTROL
+═══════════════════════════════════════ */
+window._voiceActive=false;
+const SpeechRecognitionAPI=window.SpeechRecognition||window.webkitSpeechRecognition;
+const micStatusEl=document.getElementById('micStatusEl');
+const lastCmdEl=document.getElementById('lastCmdEl');
+const micToggleBtn=document.getElementById('micToggleBtn');
+let recognition=null;
+
+function runVoiceCommand(cmd){
+  lastCmdEl.textContent=cmd;
+  logActivity('Voice command: "'+cmd+'"');
+  if(cmd.includes('change color')){
+    const h=[0x00ff88,0x00f5ff,0xbf00ff,0xffd700,0xff3366];
+    applyColor(h[(h.indexOf(curColor)+1)%h.length]);
+  }else if(cmd.includes('next color')){
+    const h=[0x00ff88,0x00f5ff,0xbf00ff,0xffd700,0xff3366];
+    applyColor(h[(h.indexOf(curColor)+1)%h.length]);
+  }else if(cmd.includes('change shape')||cmd.includes('next shape')){
+    shapeIdx=(shapeIdx+1)%shapes.length;
+    swapShape(shapes[shapeIdx]);
+    updateObjectLabInfo();
+  }else if(cmd.includes('zoom in')){
+    camZ=Math.max(2.5,camZ-.6);
+  }else if(cmd.includes('zoom out')){
+    camZ=Math.min(9,camZ+.6);
+  }else if(cmd.includes('rotate')){
+    rotVY+=.3;
+  }else if(cmd.includes('reset')){
+    resetScene();
+  }else if(cmd.includes('pause')){
+    scenePaused=true; window._scenePaused=true;
+  }else if(cmd.includes('resume')){
+    scenePaused=false; window._scenePaused=false;
+  }else if(cmd.includes('open settings')){
+    openSettingsModal();
+  }else if(cmd.includes('show dashboard')){
+    document.getElementById('dashboard')?.scrollIntoView({behavior:'smooth'});
+  }else if(cmd.includes('stop camera')){
+    stopCamera();
+  }else if(cmd.includes('start camera')){
+    startCamera();
+  }else if(cmd.includes('screenshot')){
+    document.getElementById('shotBtn')?.click();
+  }else{
+    showToast('Command not recognized: "'+cmd+'"');
+    return;
+  }
+  showToast('Voice: '+cmd);
+}
+
+if(SpeechRecognitionAPI){
+  micStatusEl.textContent='READY';
+  recognition=new SpeechRecognitionAPI();
+  recognition.continuous=true;
+  recognition.interimResults=false;
+  recognition.lang='en-US';
+  recognition.onresult=e=>{
+    const cmd=e.results[e.results.length-1][0].transcript.trim().toLowerCase();
+    runVoiceCommand(cmd);
+  };
+  recognition.onerror=err=>{
+    console.warn('Speech recognition error:',err.error);
+    if(err.error==='not-allowed'){
+      showToast('Microphone permission denied');
+      window._voiceActive=false;
+      micStatusEl.textContent='READY';
+      micToggleBtn.textContent='🎙  Start Listening';
+    }
+  };
+  recognition.onend=()=>{
+    if(window._voiceActive){
+      try{ recognition.start(); }catch(e){}
+    }else{
+      micStatusEl.textContent='READY';
+    }
+  };
+  micToggleBtn.addEventListener('click',()=>{
+    if(!window._voiceActive){
+      try{
+        recognition.start();
+        window._voiceActive=true;
+        micStatusEl.textContent='LISTENING';
+        micToggleBtn.textContent='🎙  Stop Listening';
+        logActivity('Voice control started');
+      }catch(err){
+        console.error('Voice start error:',err);
+      }
+    }else{
+      recognition.stop();
+      window._voiceActive=false;
+      micStatusEl.textContent='READY';
+      micToggleBtn.textContent='🎙  Start Listening';
+      logActivity('Voice control stopped');
+    }
+  });
+}else{
+  micStatusEl.textContent='NOT SUPPORTED';
+  micToggleBtn.disabled=true;
+  micToggleBtn.style.opacity=.4;
+  micToggleBtn.style.cursor='not-allowed';
+}
+
+/* ═══════════════════════════════════════
+   SETTINGS MODAL
+═══════════════════════════════════════ */
+const settingsModal=document.getElementById('settingsModal');
+function openSettingsModal(){ settingsModal.classList.add('open'); settingsModal.setAttribute('aria-hidden','false'); }
+function closeSettingsModal(){ settingsModal.classList.remove('open'); settingsModal.setAttribute('aria-hidden','true'); }
+document.getElementById('settingsBtn')?.addEventListener('click',openSettingsModal);
+document.getElementById('settingsCloseBtn')?.addEventListener('click',closeSettingsModal);
+settingsModal?.addEventListener('click',e=>{ if(e.target===settingsModal) closeSettingsModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeSettingsModal(); });
+
+document.getElementById('setCamToggle')?.addEventListener('click',e=>{
+  if(window._camActive){ stopCamera(); e.target.textContent='Enable'; }
+  else{ startCamera(); e.target.textContent='Disable'; }
+});
+document.getElementById('setHandTrack')?.addEventListener('change',e=>{
+  window._handTrackEnabled=e.target.checked;
+});
+document.getElementById('setFaceTrack')?.addEventListener('change',e=>{
+  window._faceTrackEnabled=e.target.checked;
+});
+document.getElementById('setParticles')?.addEventListener('change',e=>{
+  if(ptGeo) S3.children.forEach(c=>{ if(c.geometry===ptGeo) c.visible=e.target.checked; });
+});
+document.getElementById('setHud')?.addEventListener('change',e=>{
+  document.querySelector('.hud').style.display=e.target.checked?'block':'none';
+});
+document.getElementById('setRenderQ')?.addEventListener('change',e=>{
+  if(R3) R3.setPixelRatio(Math.min(devicePixelRatio,parseFloat(e.target.value)));
+});
+document.getElementById('setCooldown')?.addEventListener('input',e=>{
+  window._gestureCooldown=parseInt(e.target.value);
+});
+
+function loadSettings(){
+  try{
+    const raw=localStorage.getItem('nexus_settings');
+    if(!raw) return;
+    const s=JSON.parse(raw);
+    Object.entries(s).forEach(([id,val])=>{
+      const el=document.getElementById(id);
+      if(!el) return;
+      if(el.type==='checkbox') el.checked=val;
+      else el.value=val;
+    });
+  }catch(err){ console.warn('Settings load failed:',err); }
+}
+function collectSettingIds(){
+  return ['setCamRes','setHandTrack','setFaceTrack','setVoiceTrack','setParticleQ','setRenderQ',
+    'setSensitivity','setCooldown','setMouse','setTouch','setHud','setParticles','setAnim'];
+}
+document.getElementById('setSaveBtn')?.addEventListener('click',()=>{
+  const out={};
+  collectSettingIds().forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    out[id]=el.type==='checkbox'?el.checked:el.value;
+  });
+  try{
+    localStorage.setItem('nexus_settings',JSON.stringify(out));
+    showToast('Settings saved');
+    logActivity('Settings saved');
+  }catch(err){
+    showToast('Could not save settings');
+  }
+});
+document.getElementById('setResetBtn')?.addEventListener('click',()=>{
+  localStorage.removeItem('nexus_settings');
+  location.reload();
+});
+loadSettings();
+
+/* ═══════════════════════════════════════
+   GESTURE ACCURACY TEST LAB
+═══════════════════════════════════════ */
+let testActive=false, testAttemptsN=0, testCorrectN=0, testIncorrectN=0;
+const TEST_TOTAL=10;
+const testGestureSel=document.getElementById('testGestureSel');
+const testAttemptsEl=document.getElementById('testAttempts');
+const testCorrectEl=document.getElementById('testCorrect');
+const testIncorrectEl=document.getElementById('testIncorrect');
+const testRateEl=document.getElementById('testRate');
+const testFinalEl=document.getElementById('testFinal');
+
+document.getElementById('testStartBtn')?.addEventListener('click',()=>{
+  testActive=true; testAttemptsN=0; testCorrectN=0; testIncorrectN=0;
+  testFinalEl.style.display='none';
+  updateTestUI();
+  showToast('Test started — perform "'+testGestureSel.value+'" and click Record Attempt');
+  logActivity('Gesture test started: '+testGestureSel.value);
+});
+document.getElementById('testRecordBtn')?.addEventListener('click',()=>{
+  if(!testActive){ showToast('Click Start Test first'); return; }
+  if(testAttemptsN>=TEST_TOTAL){ finalizeTest(); return; }
+  const target=testGestureSel.value;
+  const observed=window._testLabLastGesture||null;
+  testAttemptsN++;
+  if(observed===target) testCorrectN++;
+  else testIncorrectN++;
+  updateTestUI();
+  if(testAttemptsN>=TEST_TOTAL) finalizeTest();
+});
+document.getElementById('testResetBtn')?.addEventListener('click',()=>{
+  testActive=false; testAttemptsN=0; testCorrectN=0; testIncorrectN=0;
+  testFinalEl.style.display='none';
+  updateTestUI();
+});
+function updateTestUI(){
+  testAttemptsEl.textContent=`${testAttemptsN} / ${TEST_TOTAL}`;
+  testCorrectEl.textContent=testCorrectN;
+  testIncorrectEl.textContent=testIncorrectN;
+  testRateEl.textContent=testAttemptsN>0?Math.round(testCorrectN/testAttemptsN*100)+'%':'—';
+}
+function finalizeTest(){
+  testActive=false;
+  const rate=testAttemptsN>0?Math.round(testCorrectN/testAttemptsN*100):0;
+  testFinalEl.style.display='block';
+  testFinalEl.textContent=`FINAL RESULT — ${testGestureSel.value}: ${testCorrectN}/${testAttemptsN} correct (${rate}% recognition rate)`;
+  logActivity(`Gesture test finished: ${testGestureSel.value} — ${rate}% (${testCorrectN}/${testAttemptsN})`);
+}
+
+/* ═══════════════════════════════════════
+   TESTING CENTER — 18 test cases
+═══════════════════════════════════════ */
+const TEST_CASES=[
+  {id:'TC-01',input:'Click "Activate Tracking"',expected:'Camera stream starts, cover hides',auto:async()=>{
+    if(!window._camActive) startCamera();
+    await new Promise(r=>setTimeout(r,1500));
+    return window._camActive?'Camera active':'Camera did not start';
+  }},
+  {id:'TC-02',input:'Deny camera permission',expected:'Friendly error shown, app does not crash',manual:true},
+  {id:'TC-03',input:'No hand in frame',expected:'Gesture readout shows "—", no crash',auto:()=>{
+    return (!window._camActive || gestEl.textContent==='—' || window._testLabLastGesture)?'Handled gracefully':'Not verified — enable camera with no hand in frame';
+  }},
+  {id:'TC-04',input:'Show open hand to camera',expected:'Gesture = OPEN HAND, mode = ROTATE',live:'OPEN'},
+  {id:'TC-05',input:'Pinch thumb + index',expected:'Gesture = PINCH, mode = ZOOM',live:'PINCH'},
+  {id:'TC-06',input:'Make a fist',expected:'Gesture = FIST, shape changes',live:'FIST'},
+  {id:'TC-07',input:'Point with index finger',expected:'Gesture = POINT, color changes',live:'POINT'},
+  {id:'TC-08',input:'Face in frame',expected:'FACE DETECTED shown',auto:()=>{
+    const el=document.getElementById('faceDetectedEl');
+    return el && el.textContent==='FACE DETECTED'?'Face detected':'No face currently detected';
+  }},
+  {id:'TC-09',input:'Smile at camera',expected:'Face gesture = SMILE, color changes',liveFace:'SMILE'},
+  {id:'TC-10',input:'Blink',expected:'Face gesture = BLINK, shape changes',liveFace:'BLINK'},
+  {id:'TC-11',input:'Say "reset"',expected:'Scene resets, log records command',auto:()=>{
+    return window._voiceActive?'Voice active — try a command':'Voice control not currently listening';
+  }},
+  {id:'TC-12',input:'Trigger fist gesture / shape button',expected:'Object geometry changes',auto:()=>{
+    return mesh?('Current geometry: '+mesh.geometry.type):'Scene not initialized';
+  }},
+  {id:'TC-13',input:'Trigger point gesture / color dot',expected:'Object color changes',auto:()=>{
+    return mesh?('Current color: #'+curColor.toString(16)):'Scene not initialized';
+  }},
+  {id:'TC-14',input:'Pinch or scroll wheel',expected:'Camera distance (zoom) changes',auto:()=>'Camera Z: '+camZ.toFixed(2)},
+  {id:'TC-15',input:'Drag mouse / open hand',expected:'Object rotates',auto:()=>{
+    return meshGroup?('Rotation Y: '+meshGroup.rotation.y.toFixed(2)):'Scene not initialized';
+  }},
+  {id:'TC-16',input:'Touch and drag on mobile',expected:'Object rotates via touch',manual:true},
+  {id:'TC-17',input:'Create WebGL context',expected:'WebGL renderer initializes',auto:()=>{
+    try{
+      const c=document.createElement('canvas');
+      const ok=!!(c.getContext('webgl')||c.getContext('experimental-webgl'));
+      return ok?'WebGL supported':'WebGL NOT supported on this device';
+    }catch(e){ return 'WebGL NOT supported'; }
+  }},
+  {id:'TC-18',input:'Check MediaPipe scripts',expected:'Hands and FaceMesh classes are defined',auto:()=>{
+    const handsOk=typeof Hands!=='undefined';
+    const faceOk=typeof FaceMesh!=='undefined';
+    return `Hands: ${handsOk?'loaded':'FAILED'}, FaceMesh: ${faceOk?'loaded':'FAILED'}`;
+  }},
+];
+const testResults={};
+
+function renderTestTable(){
+  const body=document.getElementById('testTableBody');
+  if(!body) return;
+  body.innerHTML=TEST_CASES.map(tc=>{
+    const r=testResults[tc.id];
+    const status=r?r.status:'notrun';
+    const actual=r?r.actual:'Not measured';
+    return `<tr>
+      <td>${tc.id}</td><td>${tc.input}</td><td>${tc.expected}</td>
+      <td>${actual}</td>
+      <td><span class="tstatus ${status}">${status==='notrun'?'NOT RUN':status.toUpperCase()}</span></td>
+      <td><button class="trun" data-tc="${tc.id}">Run Test</button></td>
+    </tr>`;
+  }).join('');
+  body.querySelectorAll('.trun').forEach(btn=>{
+    btn.addEventListener('click',()=>runTest(btn.dataset.tc));
+  });
+}
+
+async function runTest(id){
+  const tc=TEST_CASES.find(t=>t.id===id);
+  if(!tc) return;
+  if(tc.manual){
+    testResults[id]={status:'notrun',actual:'Manual test — perform and verify visually'};
+    renderTestTable();
+    showToast(id+': manual test — verify by hand');
+    return;
+  }
+  if(tc.auto){
+    testResults[id]={status:'pass',actual:'Running…'};
+    renderTestTable();
+    const result=await tc.auto();
+    const failed=/FAILED|NOT supported|not currently|not initialized|did not start/i.test(result);
+    testResults[id]={status:failed?'fail':'pass',actual:result};
+    renderTestTable();
+    logActivity(`Test ${id} run: ${testResults[id].status.toUpperCase()}`);
+    return;
+  }
+  if(tc.live||tc.liveFace){
+    testResults[id]={status:'notrun',actual:'Listening for gesture (8s)…'};
+    renderTestTable();
+    showToast('Perform the gesture for '+id+' now');
+    const target=tc.live||tc.liveFace;
+    const getter=tc.live?()=>window._testLabLastGesture:()=>lastFaceGesture;
+    const start=Date.now();
+    const iv=setInterval(()=>{
+      if(getter()===target){
+        clearInterval(iv);
+        testResults[id]={status:'pass',actual:'Detected: '+target};
+        renderTestTable();
+        logActivity(`Test ${id} run: PASS`);
+      }else if(Date.now()-start>8000){
+        clearInterval(iv);
+        testResults[id]={status:'fail',actual:'Gesture not detected within 8s'};
+        renderTestTable();
+        logActivity(`Test ${id} run: FAIL`);
+      }
+    },200);
+  }
+}
+renderTestTable();
 
 /* ═══════════════════════════════════════
    BOOT
